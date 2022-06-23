@@ -29,11 +29,6 @@ public class Main extends ListenerAdapter {
     }
 
     @Override
-    public void onReady(@NotNull ReadyEvent event) {
-        System.out.printf("INFO: JDA Client is ready!");
-    }
-
-    @Override
     public void onDisconnect(@NotNull DisconnectEvent event) {
         System.out.printf("WARNING: Disconnected from Discord.");
     }
