@@ -18,6 +18,7 @@ public class MeteoriumClient {
     public MeteoriumClient(String token) throws LoginException, IOException, InterruptedException {
         // Logger
         logger = new Logger("MeteoriumRunLog");
+        logger.info("MeteoriumJDA running startup process.");
 
         // Make the JDA builder and build the client
         logger.log("Creating JDA client object.");
