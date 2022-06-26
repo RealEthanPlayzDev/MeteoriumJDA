@@ -21,7 +21,7 @@ public class Logger {
 
         // Delete any existing file with the same name and recreate it
         if (logfile.exists() && !logfile.isDirectory()) {
-            System.out.printf(ANSITerminalColors.YELLOW + "%s[Logger (INIT STAGE - %S)][WARN]: An existing file with the name \"%s\" already exists! Deleting.\n" + ANSITerminalColors.RESET, getTimestampString(), logname, logname + ".txt");
+            System.out.printf(ANSITerminalColors.YELLOW + "%s[WARN][%s (INITIALIZER)]: An existing file with the name \"%s\" already exists! Deleting.\n" + ANSITerminalColors.RESET, getTimestampString(), logname, logname + ".txt");
             logfile.delete();
         }
         logfile.createNewFile();
@@ -40,25 +40,25 @@ public class Logger {
     }
 
     public void log(String message) {
-        String fmsg = getTimestampString() + "[LOG][" + logname + "]: " + message + "\n";
+        String fmsg = String.format("%s[LOG][%s]: %s\n", getTimestampString(), logname, message);
         System.out.printf(ANSITerminalColors.WHITE + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
 
     public void warn(String message) {
-        String fmsg = getTimestampString() + "[WARN][" + logname + "]: " + message + "\n";
+        String fmsg = String.format("%s[WARN][%s]: %s\n", getTimestampString(), logname, message);
         System.out.printf(ANSITerminalColors.YELLOW + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
 
     public void error(String message) {
-        String fmsg = getTimestampString() + "[ERROR][" + logname + "]: " + message + "\n";
+        String fmsg = String.format("%s[ERROR][%s]: %s\n", getTimestampString(), logname, message);
         System.out.printf(ANSITerminalColors.RED + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
 
     public void info(String message) {
-        String fmsg = getTimestampString() + "[INFO][" + logname + "]: " + message + "\n";
+        String fmsg = String.format("%s[INFO][%s]: %s\n", getTimestampString(), logname, message);
         System.out.printf(ANSITerminalColors.CYAN + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
