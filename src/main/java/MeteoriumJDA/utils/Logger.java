@@ -21,7 +21,7 @@ public class Logger {
 
         // Delete any existing file with the same name and recreate it
         if (logfile.exists() && !logfile.isDirectory()) {
-            System.out.printf(ANSITerminalColors.YELLOW + "%s[Logger (INIT STAGE - %S)][WARN]: An existing file with the name \"%s\" already exists! Deleting.", getTimestampString(), logname, logname + ".txt");
+            System.out.printf(ANSITerminalColors.YELLOW + "%s[Logger (INIT STAGE - %S)][WARN]: An existing file with the name \"%s\" already exists! Deleting.\n" + ANSITerminalColors.RESET, getTimestampString(), logname, logname + ".txt");
             logfile.delete();
         }
         logfile.createNewFile();
@@ -34,31 +34,31 @@ public class Logger {
             Files.write(Paths.get(logname + ".txt"), content.getBytes(), StandardOpenOption.APPEND);
         } catch(IOException exception) {
             success = false;
-            System.out.printf(ANSITerminalColors.RED + "%s[ERROR][%s]: Could not create log file:\n%s" + ANSITerminalColors.RESET, getTimestampString(), logname, Arrays.toString(exception.getStackTrace()));
+            System.out.printf(ANSITerminalColors.RED + "%s[ERROR][%s]: Could not create log file:\n%s\n" + ANSITerminalColors.RESET, getTimestampString(), logname, Arrays.toString(exception.getStackTrace()));
         }
         return success;
     }
 
     public void log(String message) {
-        String fmsg = getTimestampString() + "[LOG][" + logname + "]: " + message;
+        String fmsg = getTimestampString() + "[LOG][" + logname + "]: " + message + "\n";
         System.out.printf(ANSITerminalColors.WHITE + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
 
     public void warn(String message) {
-        String fmsg = getTimestampString() + "[WARN][" + logname + "]: " + message;
+        String fmsg = getTimestampString() + "[WARN][" + logname + "]: " + message + "\n";
         System.out.printf(ANSITerminalColors.YELLOW + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
 
     public void error(String message) {
-        String fmsg = getTimestampString() + "[ERROR][" + logname + "]: " + message;
+        String fmsg = getTimestampString() + "[ERROR][" + logname + "]: " + message + "\n";
         System.out.printf(ANSITerminalColors.RED + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
 
     public void info(String message) {
-        String fmsg = getTimestampString() + "[INFO][" + logname + "]: " + message;
+        String fmsg = getTimestampString() + "[INFO][" + logname + "]: " + message + "\n";
         System.out.printf(ANSITerminalColors.CYAN + fmsg + ANSITerminalColors.RESET);
         writeToFile(fmsg);
     }
